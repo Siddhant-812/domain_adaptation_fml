@@ -10,15 +10,6 @@ Continual unsupervised domain adaptation with a small, byte-budgeted replay memo
 
 ![pipeline](docs/arch.png)
 
-1. **Stage 0:** fine-tune an ImageNet ResNet-18 on the labelled source domain. All runs start from this same checkpoint.
-2. **Stages 1–3:** for each unlabelled target domain, in order:
-   - pseudo-label the target images with the current model, in eval mode, recomputed every epoch, and keep those with confidence ≥ τ (0.8 on PACS, 0.6 on Office-Home);
-   - train on the target batch concatenated with a replay batch from the memory;
-   - only the chosen *scope* of parameters is updated (`full`, `lastblock`, `bn` = BatchNorm affine, `head`);
-   - at the end of the stage, add the highest-confidence pseudo-labelled images to the memory.
-3. **Replay memory:** byte budget B = ρ · (images seen) · 3·224² bytes, split equally across domains and class-balanced. Images are stored at r×r pixels (224/112/64/32), so a 64 px memory holds about 12× more images than a 224 px one for the same bytes. Source images keep their true labels; target images keep their pseudo-labels.
-4. **Evaluation:** after every stage, test on every domain's held-out split → an accuracy matrix A[k][j]. From it: ACC (mean of the final row), forgetting, new-domain accuracy.
-
 ### Methods and scopes
 
 | Name | Meaning |
