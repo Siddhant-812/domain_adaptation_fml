@@ -184,7 +184,3 @@ Source images are not needed in the memory. Domain order matters, and when Sketc
 ![diagnostics](docs/fig_diag.png)
 
 The sequential model collapses even when only the BatchNorm running statistics change (22.3), so statistics drift towards the newest domain is enough to destroy it. Replay without the memory loss still reaches 57.6, so most of the gain comes from mixing old-domain images into the batch (balanced statistics). Replay with frozen statistics (52.0) is no better than the source-only baseline. The rehearsal loss adds the last ~6 points.
-
-### Limitations
-
-One seed (no confidence intervals), ResNet-18 only, two datasets, fixed hyper-parameters (not tuned), diagnostics on PACS BN-affine with one domain order only. Treat differences of a few points as noise.
