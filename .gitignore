@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+data/
+cache/
+checkpoints/
+results*/
+jobs/
+logs/
+analysis/
+.torch/
