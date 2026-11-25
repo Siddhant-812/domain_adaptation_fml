@@ -8,7 +8,7 @@ Continual unsupervised domain adaptation with a small, byte-budgeted replay memo
 
 ## Architecture
 
-![pipeline](docs/fig_arch.png)
+![pipeline](docs/arch.pdf)
 
 1. **Stage 0:** fine-tune an ImageNet ResNet-18 on the labelled source domain. All runs start from this same checkpoint.
 2. **Stages 1–3:** for each unlabelled target domain, in order:
